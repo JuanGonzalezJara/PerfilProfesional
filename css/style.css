@@ -241,14 +241,79 @@ body {
     outline: none;
   }
   
+
   /* Modo oscuro */
-  body.dark-mode {
-    --primary-bg: #333;
-    --primary-text: #f9f9f9;
-    --header-bg: #1e2125;
-    --header-text: #fff;
-    --button-bg: #ffc107;
-    --button-hover-bg: #ffcd38;
-    --progress-bar-bg: #ffcb00;
-    --progress-bar-bg-light: #555;
-  }
+body.dark-mode {
+  --primary-bg: #333;
+  --primary-text: #f9f9f9;
+  --header-bg: #1e2125;
+  --header-text: #fff;
+  --button-bg: #ffc107;
+  --button-hover-bg: #ffcd38;
+  --progress-bar-bg: #ffcb00;
+  --progress-bar-bg-light: #555;
+}
+
+body.dark-mode header {
+  color: var(--header-text);
+}
+
+body.dark-mode h2 {
+  color: #ffcb00; /* Cambia el color de los títulos */
+}
+
+body.dark-mode .timeline-container {
+  background-color: #444; /* Fondo más oscuro para la línea de tiempo */
+}
+
+body.dark-mode .timeline-content {
+  background-color: #555; /* Fondo más oscuro para los items */
+  color: var(--primary-text);
+}
+
+body.dark-mode .timeline-item::before {
+  background-color: #ffcb00; /* Cambia el color de los círculos de la línea de tiempo */
+}
+
+body.dark-mode .clicker {
+  background: #222; /* Fondo más oscuro para el contador de clics */
+  color: #ffcb00; /* Cambia el color del texto */
+}
+
+body.dark-mode .project {
+  background: #444; /* Fondo más oscuro para los proyectos */
+  border: 1px solid #777;
+  color: #f9f9f9; /* Cambia el color del texto */
+}
+
+body.dark-mode a {
+  color: #ffcb00; /* Cambia el color de los enlaces */
+}
+
+body.dark-mode a:hover {
+  color: #fff; /* Cambia el color al pasar el ratón */
+}
+body.dark-mode .habilidades {
+  background-color: #333; /* Fondo más oscuro */
+  color: #f9f9f9; /* Color de texto más claro */
+}
+
+body.dark-mode .habilidades h2 {
+  color: #ffcb00; /* Cambia el color de los títulos */
+}
+
+body.dark-mode .skill span {
+  color: #ffcb00; /* Cambia el color del ícono y nombre de la habilidad */
+}
+
+body.dark-mode .progress-bar {
+  background-color: #444; /* Fondo más oscuro para las barras de progreso */
+}
+
+body.dark-mode .progress {
+  background-color: #ffcb00; /* Cambia el color de las barras de progreso */
+}
+
+body.dark-mode .progress-bar .progress {
+  background-color: #ffcb00; /* Cambia el color de las barras de progreso en modo oscuro */
+}

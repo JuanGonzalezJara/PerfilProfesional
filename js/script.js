@@ -19,14 +19,39 @@ fetch("https://api.github.com/users/JuanGonzalezJara/repos")
     container.innerHTML = "Error al cargar proyectos.";
     console.error(err);
   });
-let clickCount = localStorage.getItem('clickCount') || 0;
+
+// Obtener el valor inicial de clickCount desde localStorage
+let clickCount = parseInt(localStorage.getItem('clickCount')) || 0;
 document.getElementById('clickCount').textContent = clickCount;
 
-document.getElementById('clickBtn').addEventListener('click', () => {
+// Añadir el evento al botón de clic
+document.getElementById('clickBtn').addEventListener('click', function() {
   clickCount++;
   localStorage.setItem('clickCount', clickCount);
   document.getElementById('clickCount').textContent = clickCount;
+
+  // Verificar si se alcanzaron los 10 clics
+  if (clickCount === 10) {
+    // Cambiar el fondo y tamaño del botón cuando se llega a 10 clics
+    const clickButton = document.getElementById('clickBtn');
+    
+    // Alerta divertida
+    alert('¡Felicidades! Has alcanzado 10 clics, eres increíble!');
+    
+    // Cambiar estilo del botón
+    clickButton.style.backgroundColor = '#28a745';  // Color verde
+    clickButton.style.transform = 'scale(1.5)';     // Aumentar tamaño
+    clickButton.style.transition = 'transform 0.2s, background-color 0.3s'; // Transición suave
+
+    // Volver al estilo original después de 2 segundos
+    setTimeout(() => {
+      clickButton.style.backgroundColor = '#ffc107'; // Color original
+      clickButton.style.transform = 'scale(1)';      // Volver al tamaño original
+    }, 2000);
+  }
 });
+
+// Configuración de la Intersección de los elementos de la línea de tiempo
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -36,28 +61,31 @@ const observer = new IntersectionObserver(entries => {
   }, {
     threshold: 0.2 // Ajusta el porcentaje de visibilidad necesario
   });
-  
-  document.querySelectorAll('.timeline-content').forEach(elem => {
-    observer.observe(elem);
-  });
-  const skillObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const progress = entry.target;
-        const value = progress.getAttribute('data-value');
-        progress.style.width = value;
-        skillObserver.unobserve(progress); // para animarlo solo una vez
-      }
-    });
-  }, {
-    threshold: 0.3
-  });
-  
-  document.querySelectorAll('.progress').forEach(bar => {
-    skillObserver.observe(bar);
-  });
 
-  const darkModeToggle = document.getElementById('darkModeToggle');
+document.querySelectorAll('.timeline-content').forEach(elem => {
+  observer.observe(elem);
+});
+
+// Configuración de las barras de progreso para las habilidades
+const skillObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const progress = entry.target;
+      const value = progress.getAttribute('data-value');
+      progress.style.width = value;
+      skillObserver.unobserve(progress); // Para animarlo solo una vez
+    }
+  });
+}, {
+  threshold: 0.3
+});
+
+document.querySelectorAll('.progress').forEach(bar => {
+  skillObserver.observe(bar);
+});
+
+// Configuración de modo oscuro
+const darkModeToggle = document.getElementById('darkModeToggle');
 
 // Verificar si el modo oscuro está activado previamente
 if (localStorage.getItem('darkMode') === 'enabled') {
